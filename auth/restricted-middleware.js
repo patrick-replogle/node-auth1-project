@@ -1,7 +1,7 @@
 const bcrypt = require("bcryptjs");
 const users = require("../users/user-model.js");
 
-function restricted(req, res, next) {
+module.exports = (req, res, next) => {
   const { username, password } = req.headers;
 
   if (!(username && password)) {
@@ -24,6 +24,4 @@ function restricted(req, res, next) {
         });
       });
   }
-}
-
-module.exports = restricted;
+};
