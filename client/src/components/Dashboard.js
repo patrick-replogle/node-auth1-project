@@ -14,9 +14,9 @@ const Dashboard = props => {
   }, []);
   return (
     <div>
-      <h1>Users Listed Below:</h1>
+      <h1>{props.message}</h1>
       {users.map(user => {
-        return <h1 key={user.id}>{user.username}</h1>;
+        return <h1 key={user.id}>username: {user.username}</h1>;
       })}
     </div>
   );
