@@ -30,6 +30,7 @@ router.post("/login", (req, res) => {
     .first()
     .then(user => {
       if (user && bcrypt.compareSync(password, user.password)) {
+        req.session.user = user;
         res.status(200).json({
           message: `Welcome ${user.username}!`,
           id: user.id,
@@ -44,6 +45,20 @@ router.post("/login", (req, res) => {
         .status(500)
         .json({ message: "Error while logging in. Please try back later" });
     });
+});
+
+router.delete("/logout", (req, res) => {
+  if (req.session) {
+    req.session.destroy(err => {
+      if (err) {
+        res.send("error logging out");
+      } else {
+        res.send("thanks for visiting");
+      }
+    });
+  } else {
+    res.end();
+  }
 });
 
 module.exports = router;

@@ -20,6 +20,7 @@ const Login = props => {
     axios
       .post("http://localhost:5000/api/login", loginData)
       .then(res => {
+        console.log(res.data);
         props.setUsername(res.data.username);
         props.setMessage(res.data.message);
         setLoginData(initialUser);

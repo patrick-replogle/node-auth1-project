@@ -20,6 +20,7 @@ const Register = props => {
     axios
       .post("http://localhost:5000/api/register", registerData)
       .then(res => {
+        console.log(res);
         setRegisterData(initialUser);
         props.history.push("/login");
       })
